@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pack artifact
+        run: |
+          mkdir -p /tmp/artifact
+          cp -r SKILL.md README.md LICENSE references /tmp/artifact/
+          cd /tmp/artifact
+          zip -r /tmp/openclaw-weixin-cron-push.zip .
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /tmp/openclaw-weixin-cron-push.zip
+          generate_release_notes: true
