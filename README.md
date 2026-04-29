@@ -9,7 +9,7 @@ OpenClaw Skill — 通过 Cron 定时任务向微信用户主动推送消息。
 - 支持多微信账号隔离
 - 可通过 CLI 或 AI 对话创建任务
 
-## 前理
+## 原理
 
 ```
 Cron agentTurn → 独立会话 → --announce + --channel openclaw-weixin → 微信投递到用户手机
